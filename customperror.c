@@ -1,3 +1,6 @@
+
+/* glib-2.82.2 is used*/
+
 #include<unistd.h>
 #include<errno.h>
 #include<string.h>
@@ -17,12 +20,12 @@ void getlatesterror(const char *customcomment){
     int commentlen = customlen(customcomment);
     write(2,customcomment,commentlen);
     write(2,": ",2);
-    char *perr=strerror(errno);
+    char *perr=strerror(errno); /* since glib-2.38 sys_nerror is not supported so thats lowest I could go*/
     write(2,perr,lencustomforerror(perr));
 }
 
 int main() {
-    char *k;
+    char *k; /* intentionally made mistake here to showcase*/
     if (read(0,k,100) !=-1) write(1,"yes",3);
     else{
         
